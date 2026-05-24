@@ -20,7 +20,7 @@
         "tailwind-merge": "^3.6.0",
         "tw-animate-css": "^1.4.0",
         "vortex-stream": "^0.1.0-beta.1",
-        "vortex-stream-sdk": "^0.1.3-beta",
+        "vortex-stream-sdk": "^1.0.0",
       },
       "devDependencies": {
         "@tailwindcss/postcss": "^4",
@@ -1407,7 +1407,7 @@
 
     "vortex-stream": ["vortex-stream@0.1.0-beta.1", "", {}, "sha512-ygGYHlSvQjFua9S1RPG/wBbteXT1DrgbxECX54VdajVEqq90hPvS6TL76fb2hzxxY9sJgfBEJgGx5wTFMY868w=="],
 
-    "vortex-stream-sdk": ["vortex-stream-sdk@0.1.3-beta", "", {}, "sha512-3TdSkuEM46QCKHi8Kv1yYv7hBXaU0cHiKhzTUtO5g11bILjW+uNkLNdgn8Ajd2krTKECPq7iFzDgJggl3l3QFA=="],
+    "vortex-stream-sdk": ["vortex-stream-sdk@1.0.0", "", {}, "sha512-ZwjrHlRcu0jqiPssGMmPii13lolTmYU3cmS7sSrWEuJ/7eO6FIVjGIqAjQKchwA2q05xfgKGxNIzl+IHIlt0QQ=="],
 
     "web-streams-polyfill": ["web-streams-polyfill@3.3.3", "", {}, "sha512-d2JWLCivmZYTSIoge9MsgFCZrt571BikcWGYkjC1khllbTeDlGqZ2D8vD8E/lJa8WGWbb7Plm8/XJYV7IJHZZw=="],
 

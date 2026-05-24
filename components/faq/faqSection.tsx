@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 export const FAQS = [
 	{
 		q: "What exchanges does Vortex-Stream support?",
-		a: "Currently 10 exchanges are supported: Binance, Coinbase, OKX, Bybit, Kraken, Huobi, KuCoin, MEXC, Bitget, and Gate.io. CEX and DEX support is on the roadmap for v1.0.",
+		a: "Currently 10 exchanges are supported: Binance, Coinbase, OKX, Bybit, Kraken, KuCoin, Bitfinex, Htx, Crypto.com, Bitget, and Bitstamp. CEX and DEX support is on the roadmap for v1.0.",
 	},
 	{
 		q: "Why is the core written in Rust?",
@@ -13,7 +13,7 @@ export const FAQS = [
 	},
 	{
 		q: "How do I use this in a Node.js project?",
-		a: "Install the package with npm install vortex-stream@beta or bun add vortex-stream@beta. The Rust core is pre-compiled to a native Node addon (.node) and shipped with the package — no build tools required.",
+		a: "Install the package with npm install vortex-stream or bun add vortex-stream. The Rust core is pre-compiled to a native Node addon (.node) and shipped with the package — no build tools required.",
 	},
 	{
 		q: "Does it handle reconnections automatically?",

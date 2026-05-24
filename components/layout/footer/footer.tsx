@@ -9,10 +9,7 @@ const LINKS = [
 	{
 		heading: "Product",
 		items: [
-			{ label: "Features", href: "#" },
-			{ label: "Changelog", href: "#" },
-			{ label: "Roadmap", href: "#" },
-			{ label: "Pricing", href: "#" },
+			{ label: "Features", href: "#features" },
 		],
 	},
 	{
@@ -20,17 +17,14 @@ const LINKS = [
 		items: [
 			{ label: "Docs", href: "#" },
 			{ label: "API Reference", href: "#" },
-			{ label: "Examples", href: "#" },
-			{ label: "GitHub", href: "#" },
+			{ label: "GitHub", href: "https://github.com/VedantShuklaaa/Vortex-Stream" },
 		],
 	},
 	{
 		heading: "Company",
 		items: [
 			{ label: "About", href: "#" },
-			{ label: "Blog", href: "#" },
-			{ label: "Twitter / X", href: "#" },
-			{ label: "Discord", href: "#" },
+			{ label: "Twitter / X", href: "https://x.com/SegFault_Dev" },
 		],
 	},
 ];
@@ -102,7 +96,7 @@ export default function Footer() {
 						<div className="flex items-center gap-2 rounded-xl px-3 py-2 self-start bg-card border border-border" >
 							<PulseDot />
 							<span className="text-xs text-primary font-mono" >
-								npm i vortex-stream@beta
+								npm i vortex-stream-sdk
 							</span>
 						</div>
 

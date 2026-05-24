@@ -199,14 +199,16 @@ export const FEATURES: Feature[] = [
 		highlight: "< 1ms latency",
 		size: "large",
 		code: `// Connect in two lines
-const stream = VortexStream.connect({
-  exchange: "binance",
-  pairs: ["BTC/USDT", "ETH/USDT"],
-});
+import { JsVortexStream } from "vortex-stream-sdk";
 
-stream.subscribe((tick) => {
-  console.log(tick.price); // < 1ms
-});`,
+const stream = new JsVortexStream();
+
+stream.trades(
+    "binance", "SOLUSDT", 
+    (trade) => {
+	    console.log(trade);
+	}
+);`,
 	},
 	{
 		id: 1,
@@ -236,11 +238,15 @@ stream.subscribe((tick) => {
 		description: "Drop in as an npm package. The Rust core is compiled to a native Node addon — no spawned processes, no HTTP bridges.",
 		highlight: "npm install",
 		size: "medium",
-		code: `import { vortex } from "vortex-stream";
+		code: `
+const stream = new JsVortexStream();
 
-const feed = await vortex.stream("okx", {
-  channel: "orderbook",
-  symbol: "SOL-USDT",
+stream.trades(
+    "binance", "SOLUSDT",
+    (trade) => {
+	    console.log(trade);
+			}
+	);
 });`,
 	},
 	{

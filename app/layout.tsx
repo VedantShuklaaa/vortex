@@ -29,6 +29,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
 
@@ -39,12 +40,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <nav className="fixed absolute w-full z-100 ">
-            <Navbar/>
+          <nav className="fixed absolute w-full z-100">
+            <Navbar />
           </nav>
           {children}
           <div>
-            <Footer/>
+            <Footer />
           </div>
         </ThemeProvider>
       </body>

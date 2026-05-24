@@ -105,15 +105,9 @@ export default function DemoSection() {
 								</div>
 
 								{/* Live badge */}
-								<div
-									className="flex items-center gap-1.5 rounded-full px-2.5 py-0.5"
-									style={{ background: "rgba(81,240,168,0.08)", border: "1px solid rgba(81,240,168,0.15)" }}
-								>
+								<div className="flex items-center gap-1.5 rounded-full px-2.5 py-0.5 bg-primary/8 border border-primary/15">
 									<PulseDot />
-									<span
-										className="text-xs text-primary"
-										style={{ fontFamily: "var(--font-mono,'IBM Plex Mono',monospace)" }}
-									>
+									<span className="text-xs text-primary font-mono">
 										LIVE
 									</span>
 								</div>
@@ -142,13 +136,13 @@ export default function DemoSection() {
 									}}
 								/>
 
-								{/* Emerald glow at center */}
+								{/* Emerald glow at center 
 								<div
 									className="absolute inset-0 pointer-events-none"
 									style={{
 										background: "radial-gradient(ellipse at 50% 60%, rgba(81,240,168,0.07) 0%, transparent 65%)",
 									}}
-								/>
+								/>*/}
 							</div>
 
 							{/* Step description strip */}

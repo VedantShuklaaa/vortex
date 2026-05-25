@@ -186,11 +186,8 @@ function TickRow({
 	}, [value, color]);
 
 	return (
-		<div className="flex items-center justify-between py-2.5 border-b border-border last:border-0">
-			<span
-				className="text-xs text-muted-foreground"
-				style={{ fontFamily: "var(--font-mono,'IBM Plex Mono',monospace)" }}
-			>
+		<div className="flex items-center justify-between py-2.5 border-b border-border last:border-0 font-mono">
+			<span className="text-xs text-muted-foreground" >
 				{label}
 			</span>
 			<span

@@ -9,7 +9,7 @@ const LINKS = [
 	{
 		heading: "Product",
 		items: [
-			{ label: "Features", href: "#features" },
+			{ label: "Features", href: "/#features" },
 		],
 	},
 	{
@@ -66,7 +66,6 @@ export default function Footer() {
 			ref={footerRef}
 			className="w-full border-t border-border bg-background"
 		>
-			{/* Animated divider line */}
 			<div
 				ref={lineRef}
 				className="h-px w-full bg-[linear-gradient(90deg,transparent,rgb(81,240,168),transparent)]"
@@ -100,7 +99,6 @@ export default function Footer() {
 							</span>
 						</div>
 
-						{/* Tech badges */}
 						<div className="flex flex-wrap gap-2">
 							{BADGES.map((b) => (
 								<span
@@ -142,7 +140,6 @@ export default function Footer() {
 					))}
 				</div>
 
-				{/* Bottom row */}
 				<div
 					className="mt-12 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3"
 				>t

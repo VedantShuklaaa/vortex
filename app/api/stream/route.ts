@@ -15,43 +15,128 @@ export interface Tick {
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+function normalizeSymbol(symbol: string) {
+	return symbol
+		.replace("-", "")
+		.replace("/", "")
+		.toUpperCase();
+}
+
 export async function GET(req: NextRequest) {
 	const { searchParams } = new URL(req.url);
-	const exchange = searchParams.get("exchange") ?? "binance";
-	const pair = searchParams.get("pair") ?? "BTC/USDT";
+
+	const exchange =
+		(searchParams.get("exchange") ?? "binance").toLowerCase();
+
+	const pair =
+		(searchParams.get("pair") ?? "BTCUSDT").toUpperCase();
+
+	const normalizedPair = normalizeSymbol(pair);
 
 	const stream = new ReadableStream({
 		async start(controller) {
-			const enc = new TextEncoder();
+			const encoder = new TextEncoder();
 
-			const send = (data: string) => {
+			let closed = false;
+			let sdkStream: any = null;
+
+			const send = (payload: unknown) => {
+				if (closed) return;
+
 				try {
-					controller.enqueue(enc.encode(`data: ${data}\n\n`));
-				} catch {
-
+					controller.enqueue(
+						encoder.encode(
+							`data: ${JSON.stringify(payload)}\n\n`
+						)
+					);
+				} catch (err) {
+					console.error("SSE send error:", err);
 				}
 			};
 
-			send(JSON.stringify({ type: "connected", exchange, pair }));
+			const cleanup = () => {
+				if (closed) return;
 
-			let sdkStream: any = null;
+				closed = true;
+
+				clearInterval(heartbeat);
+
+				try {
+					if (sdkStream) {
+						sdkStream.disconnect();
+					}
+				} catch (err) {
+					console.error("disconnect error:", err);
+				}
+
+				try {
+					controller.close();
+				} catch { }
+			};
+
+			send({
+				type: "connected",
+				exchange,
+				pair: normalizedPair,
+			});
+
+			const heartbeat = setInterval(() => {
+				send({ type: "ping" });
+			}, 15000);
+
+			req.signal.addEventListener(
+				"abort",
+				cleanup,
+				{ once: true }
+			);
 
 			try {
-				const { JsVortexStream } = await import("vortex-stream-sdk");
+				const { JsVortexStream } =
+					await import("vortex-stream-sdk");
 
 				sdkStream = new JsVortexStream();
 
 				sdkStream.trades(
 					exchange,
-					pair.replace("/", ""),
-					(trade: Tick) => {
-						send(JSON.stringify({
-							type: "tick",
-							...trade,
-						}));
+					normalizedPair,
+					(rawTrade: unknown) => {
+						if (closed) return;
+
+						try {
+							const trade: Tick =
+								typeof rawTrade === "string"
+									? JSON.parse(rawTrade)
+									: (rawTrade as Tick);
+
+							// Prevent cross-exchange leaks
+							if (
+								trade.exchange.toLowerCase() !== exchange
+							) {
+								return;
+							}
+
+							// Prevent symbol mismatches
+							if (
+								normalizeSymbol(trade.symbol) !==
+								normalizedPair
+							) {
+								return;
+							}
+
+							send({
+								type: "tick",
+								...trade,
+							});
+						} catch (err) {
+							console.error(
+								"trade parse error:",
+								err
+							);
+						}
 					}
 				);
 
+				// Keep route alive until disconnect
 				await new Promise<void>((resolve) => {
 					req.signal.addEventListener(
 						"abort",
@@ -59,50 +144,74 @@ export async function GET(req: NextRequest) {
 						{ once: true }
 					);
 				});
-
 			} catch (err: any) {
-				console.warn("[stream] SDK unavailable, falling back to mock data:", err.message);
+				console.warn(
+					"[stream] SDK unavailable, using mock data:",
+					err?.message
+				);
 
-				// ── MOCK fallback (remove in production) ──────────────────
 				const MOCK_PRICES: Record<string, number> = {
-					"BTC/USDT": 97432.10,
-					"ETH/USDT": 3241.80,
-					"SOL/USDT": 182.45,
-					"BNB/USDT": 641.20,
-					"AVAX/USDT": 38.74,
-					"ARB/USDT": 1.14,
-					"DOGE/USDT": 0.182,
+					BTCUSDT: 97432.1,
+					ETHUSDT: 3241.8,
+					SOLUSDT: 182.45,
+					BNBUSDT: 641.2,
+					AVAXUSDT: 38.74,
+					ARBUSDT: 1.14,
+					DOGEUSDT: 0.182,
 				};
 
-				let price = MOCK_PRICES[pair] ?? 100;
+				let price =
+					MOCK_PRICES[normalizedPair] ?? 100;
+
 				let tradeId = 1_000_000;
 
 				const interval = setInterval(() => {
-					price *= 1 + (Math.random() - 0.499) * 0.001;
+					if (closed) {
+						clearInterval(interval);
+						return;
+					}
+
+					price *=
+						1 + (Math.random() - 0.5) * 0.001;
+
 					const tick: Tick = {
 						exchange,
-						symbol: pair,
+						symbol: normalizedPair,
 						event_type: "trade",
-						event_time: new Date().toISOString(),
+						event_time: Date.now().toString(),
 						trade_id: String(tradeId++),
-						last_price: price.toFixed(pair.includes("DOGE") ? 4 : 2),
-						quantity: (Math.random() * 0.05 + 0.001).toFixed(5),
-						is_buyer_maker: Math.random() > 0.5,
+						last_price: price.toFixed(
+							normalizedPair.includes("DOGE")
+								? 4
+								: 2
+						),
+						quantity: (
+							Math.random() * 0.05 +
+							0.001
+						).toFixed(5),
+						is_buyer_maker:
+							Math.random() > 0.5,
 						timestamp: Date.now(),
 					};
-					send(JSON.stringify({ type: "tick", ...tick }));
+
+					send({
+						type: "tick",
+						...tick,
+					});
 				}, 800);
 
 				await new Promise<void>((resolve) => {
-					req.signal.addEventListener("abort", () => {
-						clearInterval(interval);
-						resolve();
-					}, { once: true });
+					req.signal.addEventListener(
+						"abort",
+						() => {
+							clearInterval(interval);
+							resolve();
+						},
+						{ once: true }
+					);
 				});
-
 			} finally {
-				try { sdkStream?.disconnect(); } catch { }
-				controller.close();
+				cleanup();
 			}
 		},
 	});
@@ -110,9 +219,10 @@ export async function GET(req: NextRequest) {
 	return new Response(stream, {
 		headers: {
 			"Content-Type": "text/event-stream",
-			"Cache-Control": "no-cache",
-			"Connection": "keep-alive",
-			"X-Accel-Buffering": "no", 
+			"Cache-Control":
+				"no-cache, no-transform",
+			Connection: "keep-alive",
+			"X-Accel-Buffering": "no",
 		},
 	});
 }

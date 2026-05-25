@@ -21,8 +21,8 @@ const EXCHANGES = [
 ];
 
 const PAIRS = [
-	"BTC/USDT", "ETH/USDT", "SOL/USDT",
-	"BNB/USDT", "AVAX/USDT", "ARB/USDT", "DOGE/USDT",
+	"BTCUSDT", "ETHUSDT", "SOLUSDT",
+	"BNBUSDT", "AVAXUSDT", "ARBUSDT", "DOGEUSDT",
 ];
 
 // ─────────────────────────────────────────────────────────────────
@@ -187,7 +187,7 @@ function TickRow({
 
 	return (
 		<div className="flex items-center justify-between py-2.5 border-b border-border last:border-0 font-mono">
-			<span className="text-xs text-muted-foreground" >
+			<span className="text-xs text-muted-foreground">
 				{label}
 			</span>
 			<span

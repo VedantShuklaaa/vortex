@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 // ─── Data ─────────────────────────────────────────────────────────
 export const FAQS = [
 	{
-		q: "What exchanges does Vortex-Stream support?",
+		q: "What exchanges does streamex-sdk support?",
 		a: "Currently 10 exchanges are supported: Binance, Coinbase, OKX, Bybit, Kraken, KuCoin, Bitfinex, Htx, Crypto.com, Bitget, and Bitstamp. CEX and DEX support is on the roadmap for v1.0.",
 	},
 	{
@@ -13,11 +13,11 @@ export const FAQS = [
 	},
 	{
 		q: "How do I use this in a Node.js project?",
-		a: "Install the package with npm install vortex-stream or bun add vortex-stream. The Rust core is pre-compiled to a native Node addon (.node) and shipped with the package — no build tools required.",
+		a: "Install the package with npm install streamex-sdk or bun add streamex-sdk. The Rust core is pre-compiled to a native Node addon (.node) and shipped with the package — no build tools required.",
 	},
 	{
 		q: "Does it handle reconnections automatically?",
-		a: "Yes. Vortex-Stream has built-in exponential backoff reconnection and exchange heartbeat monitoring. If the connection drops, the stream resumes automatically without any code on your end.",
+		a: "Yes. streamex-sdk has built-in exponential backoff reconnection and exchange heartbeat monitoring. If the connection drops, the stream resumes automatically without any code on your end.",
 	},
 	{
 		q: "Is the data schema normalised across exchanges?",

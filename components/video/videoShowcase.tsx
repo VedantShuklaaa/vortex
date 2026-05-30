@@ -17,7 +17,7 @@ function PulseDot() {
 
 // ─── Step pills shown below the video ────────────────────────────
 const STEPS = [
-	{ label: "Install", desc: "npm install vortex-stream@beta" },
+	{ label: "Install", desc: "npm install streamex-sdk@beta" },
 	{ label: "Connect", desc: "vortex.connect({ exchange })" },
 	{ label: "Subscribe", desc: "stream.subscribe(callback)" },
 ];
@@ -100,7 +100,7 @@ export default function DemoSection() {
 										<circle cx="12" cy="12" r="10" /><path d="M12 8v4l3 3" />
 									</svg>
 									<span className="text-xs font-mono text-muted-foreground" >
-										vortex-stream — demo.ts
+										streamex-sdk — demo.ts
 									</span>
 								</div>
 

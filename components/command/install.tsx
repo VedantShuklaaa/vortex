@@ -7,9 +7,9 @@ export function InstallSnippet() {
 	const [copied, setCopied] = useState(false);
 
 	const commands = {
-		npm: 'npm install vortex-stream-sdk',
-		bun: 'bun add vortex-stream-sdk',
-		pnpm: 'pnpm install vortex-stream-sdk',
+		npm: 'npm install streamex-sdk',
+		bun: 'bun add streamex-sdk',
+		pnpm: 'pnpm install streamex-sdk',
 	};
 
 	const currentCommand = commands[manager];

@@ -26,7 +26,7 @@ export default function ExchangesPage() {
 					Supported Exchanges
 				</h1>
 				<p className="text-sm text-muted-foreground leading-relaxed">
-					vortex-stream-sdk connects to 10 centralised exchanges. Click any
+					streamex-sdk connects to 10 centralised exchanges. Click any
 					exchange to see the raw WebSocket payload and how the SDK normalises
 					it to a unified <code className="text-primary text-xs"
 						style={{ fontFamily: "var(--font-mono,'IBM Plex Mono',monospace)" }}>

@@ -199,9 +199,9 @@ export const FEATURES: Feature[] = [
 		highlight: "< 1ms latency",
 		size: "large",
 		code: `// Connect in two lines
-import { JsVortexStream } from "vortex-stream-sdk";
+import { JsStreamex} from "streamex-sdk";
 
-const stream = new JsVortexStream();
+const stream = new JsStreamex();
 
 stream.trades(
     "binance", "SOLUSDT", 
@@ -411,7 +411,7 @@ export function SectionHeader() {
 			<p
 				className="gsap-reveal text-base max-w-lg leading-relaxed text-muted-foreground"
 			>
-				Vortex-Stream is a Rust-powered WebSocket library with first-class Node.js bindings.
+				streamex-sdk is a Rust-powered WebSocket library with first-class Node.js bindings.
 				Connect to 10 exchanges with a single import.
 			</p>
 		</div>

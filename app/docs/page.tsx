@@ -126,9 +126,9 @@ export default function DocsPage() {
 					Install from npm. The native Rust addon ships pre-built — no extra
 					toolchain required.
 				</Para>
-				<CodeBlock title="npm" lang="bash" code="npm install vortex-stream-sdk" />
-				<CodeBlock title="bun" lang="bash" code="bun add vortex-stream-sdk" />
-				<CodeBlock title="pnpm" lang="bash" code="pnpm add vortex-stream-sdk" />
+				<CodeBlock title="npm" lang="bash" code="npm install streamex-sdk" />
+				<CodeBlock title="bun" lang="bash" code="bun add streamex-sdk" />
+				<CodeBlock title="pnpm" lang="bash" code="pnpm add streamex-sdk" />
 				<Note type="tip">
 					Requires <InlineCode>Node.js 18+</InlineCode> or{" "}
 					<InlineCode>Bun 1.0+</InlineCode>. Pre-built binaries ship for{" "}
@@ -146,9 +146,9 @@ export default function DocsPage() {
 				<CodeBlock
 					title="example.ts"
 					lang="ts"
-					code={`import { JsVortexStream } from "vortex-stream-sdk";
+					code={`import { JsStreamex} from "streamex-sdk";
 
-const stream = new JsVortexStream();
+const stream = new JsStreamex();
 
 stream.trades(
     "binance", "SOLUSDT", //or ["SOLUSDT", "BTCUSDT"] for multiple tickers

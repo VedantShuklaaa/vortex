@@ -17,7 +17,7 @@ const LINKS = [
 		items: [
 			{ label: "Docs", href: "#" },
 			{ label: "API Reference", href: "#" },
-			{ label: "GitHub", href: "https://github.com/VedantShuklaaa/Vortex-Stream" },
+			{ label: "GitHub", href: "https://github.com/VedantShuklaaa/streamex-sdk" },
 		],
 	},
 	{
@@ -84,7 +84,7 @@ export default function Footer() {
 								</svg>
 							</div>
 							<span className="text-sm font-semibold tracking-wide text-foreground font-mono" >
-								Vortex-Stream
+								streamex-sdk
 							</span>
 						</div>
 
@@ -95,7 +95,7 @@ export default function Footer() {
 						<div className="flex items-center gap-2 rounded-xl px-3 py-2 self-start bg-card border border-border" >
 							<PulseDot />
 							<span className="text-xs text-primary font-mono" >
-								npm i vortex-stream-sdk
+								npm i streamex-sdk
 							</span>
 						</div>
 
@@ -144,7 +144,7 @@ export default function Footer() {
 					className="mt-12 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3"
 				>t
 					<p className="text-xs text-muted-foreground font-mono" >
-						© {new Date().getFullYear()} Vortex-Stream. MIT License.
+						© {new Date().getFullYear()} streamex-sdk. MIT License.
 					</p>
 					<p className="text-xs text-muted-foreground font-mono">
 						Built with{" "}

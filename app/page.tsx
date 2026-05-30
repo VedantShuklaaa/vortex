@@ -34,9 +34,6 @@ export default function Home() {
         },
       });
 
-      /**
-       * Hero parallax
-       */
       gsap.to(".hero-parallax", {
         yPercent: 18,
         ease: "none",
@@ -105,8 +102,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* DEMO */}
-      <DemoSection />
 
       {/* FEATURES */}
       <section
@@ -160,7 +155,7 @@ export default function Home() {
             </h2>
 
             <p className="gsap-reveal max-w-md text-sm leading-relaxed text-muted-foreground">
-              Everything you need to know about Vortex-Stream.
+              Everything you need to know about streamex-sdk.<br />
               Can't find the answer?{" "}
               <a
                 href="#"

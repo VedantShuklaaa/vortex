@@ -11,7 +11,7 @@ export default function Navbar() {
 	const [stars, setStars] = useState<number | null>(null);
 
 	useEffect(() => {
-		fetch("https://api.github.com/repos/VedantShuklaaa/vortex-stream")
+		fetch("https://api.github.com/repos/VedantShuklaaa/streamex")
 			.then(res => res.json())
 			.then(data => {
 				setStars(data.stargazers_count);
@@ -25,7 +25,7 @@ export default function Navbar() {
 
 				{/* Left — logo */}
 				<div className="flex-1 flex justify-start">
-					<Link href="/" className="text-sm">Vortex-Stream</Link>
+					<Link href="/" className="text-sm">streamex-sdk</Link>
 				</div>
 
 				{/* Centre — nav links */}
@@ -37,7 +37,7 @@ export default function Navbar() {
 
 				{/* Right — actions */}
 				<div className="flex-1 flex justify-end items-center gap-2">
-					<Link href="https://github.com/VedantShuklaaa/vortex-stream"
+					<Link href="https://github.com/VedantShuklaaa/streamex"
 						target="_blank"
 						rel="noopener noreferrer"
 						className="h-8 px-2 text-sm flex items-center cursor-pointer rounded-lg gap-2 hover:bg-background">
